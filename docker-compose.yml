@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: preflightchecklibs:latest
+    # Use simliar naming pattern used in ImGui to include third party libraries
+    volumes:
+      - ./libs:/mnt/export
+    entrypoint: /entrypoint.sh
