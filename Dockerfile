@@ -66,6 +66,45 @@ RUN unzip glew.zip -d /tmp
 RUN mkdir -p /app/export/lib/glew && \
     cp -r /tmp/glew-${GLEW_VERSION} /app/export/glew
 
+# Download and extract the Open Sans font
+RUN wget -O open-sans.zip -L https://www.1001fonts.com/download/open-sans.zip
+
+# Unzip the downloaded Open Sans file
+RUN unzip open-sans.zip -d /tmp/open-sans
+
+# Copy the Open Sans font files to /app/export/fonts
+RUN mkdir -p /app/export/fonts/open-sans && \
+    cp -r /tmp/open-sans/* /app/export/fonts/open-sans
+
+# Download and extract the Droid Sans font
+RUN wget -O droid-sans.zip -L https://www.1001fonts.com/download/droid-sans.zip
+
+# Unzip the downloaded Droid Sans file
+RUN unzip droid-sans.zip -d /tmp/droid-sans
+
+# Copy the Droid Sans font files to /app/export/fonts
+RUN mkdir -p /app/export/fonts/droid-sans && \
+    cp -r /tmp/droid-sans/* /app/export/fonts/droid-sans
+
+# Download and extract the Droid Sans Mono font
+RUN wget -O droid-sans-mono.zip -L https://www.1001fonts.com/download/droid-sans-mono.zip
+
+# Unzip the downloaded Droid Sans Mono file
+RUN unzip droid-sans-mono.zip -d /tmp/droid-sans-mono
+
+# Copy the Droid Sans Mono font files to /app/export/fonts
+RUN mkdir -p /app/export/fonts/droid-sans-mono && \
+    cp -r /tmp/droid-sans-mono/* /app/export/fonts/droid-sans-mono
+
+# Download and extract the Metropolis font
+RUN wget -O metropolis.zip -L https://www.1001fonts.com/download/metropolis.zip
+
+# Unzip the downloaded Metropolis file
+RUN unzip metropolis.zip -d /tmp/metropolis
+
+# Copy the Metropolis font files to /app/export/fonts
+RUN mkdir -p /app/export/fonts/metropolis && \
+    cp -r /tmp/metropolis/* /app/export/fonts/metropolis
 
 # Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
