@@ -54,6 +54,20 @@ RUN mkdir -p /app/export/lib/freetype && \
     cp -r /tmp/freetype-windows-binaries-2.13.2/include /app/export/lib/freetype/include && \
     cp -r /tmp/freetype-windows-binaries-2.13.2/release\ static/vs2015-2022 /app/export/lib/freetype/lib-vs2015-2022
 
+# Define the GLEW version
+ENV GLEW_VERSION=2.2.0
+
+# Download and extract the GLEW library from GitHub releases
+RUN wget -O glew.zip -L https://github.com/nigels-com/glew/releases/download/glew-${GLEW_VERSION}/glew-${GLEW_VERSION}-win32.zip
+
+# Unzip the downloaded GLEW file
+RUN unzip glew.zip -d /tmp
+
+# Copy the glew32.lib file to /app/export/
+RUN mkdir -p /app/export/lib/glew && \
+    cp -r /tmp/glew-${GLEW_VERSION} /app/export/glew
+
+
 # Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

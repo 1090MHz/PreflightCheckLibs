@@ -2,6 +2,7 @@
 
 # copy files to the export directory
 cp -r /app/export/glfw /mnt/export
+cp -r /app/export/glew /mnt/export
 cp -r /app/export/lib/imgui/emscripten /mnt/export
 
 cp -r /app/export/lib/freetype/ /mnt/export
