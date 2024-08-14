@@ -6,5 +6,5 @@ services:
     image: preflightchecklibs:latest
     # Use simliar naming pattern used in ImGui to include third party libraries
     volumes:
-      - ./libs:/mnt/export
+      - ${EXPORT_DIR:-./libs}:/mnt/export
     entrypoint: /entrypoint.sh
