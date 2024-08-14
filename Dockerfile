@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     unzip \
-    subversion \
     && rm -rf /var/lib/apt/lists/*
 
 # Define the GLFW version
