@@ -4,8 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: preflightchecklibs:latest
-    # Use simliar naming pattern used in ImGui to include third party libraries
     volumes:
-      - ${EXPORT_DIR:-./libs}:/mnt/export/libs
-      - ${FONTS_DIR:-./third_party/fonts}:/mnt/export/fonts
+      - ${EXPORT_LIBS_DIR:-${EXPORT_BASE_DIR:-./third_party}/libs}:/mnt/export/libs
+      - ${EXPORT_FONTS_DIR:-${EXPORT_BASE_DIR:-./third_party}/fonts}:/mnt/export/fonts
     entrypoint: /entrypoint.sh
