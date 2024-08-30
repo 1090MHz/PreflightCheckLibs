@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Define versions
+ENV IMGUI_VERSION=1.91.0
 ENV GLFW_VERSION=3.4
 ENV GLEW_VERSION=2.2.0
 ENV FREETYPE_VERSION=2.13.2
@@ -46,7 +47,7 @@ RUN git init imgui && \
     git remote add -f origin https://github.com/ocornut/imgui.git && \
     git config core.sparsecheckout true && \
     echo "examples/libs/emscripten" >> .git/info/sparse-checkout && \
-    git pull origin master && \
+    git pull origin tags/v${IMGUI_VERSION} && \
     mkdir -p /app/export/lib/imgui && \
     cp -r examples/libs/emscripten /app/export/lib/imgui/emscripten
 
