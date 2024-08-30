@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
 ENV GLFW_VERSION=3.4
 ENV GLEW_VERSION=2.2.0
 ENV FREETYPE_VERSION=2.13.2
+ENV RAPIDXML_VERSION=1.13
 
 # Download and extract GLFW
 RUN wget -O glfw.zip -L https://github.com/glfw/glfw/releases/download/${GLFW_VERSION}/glfw-${GLFW_VERSION}.bin.WIN64.zip && \
@@ -32,6 +33,12 @@ RUN wget -O freetype.zip -L https://github.com/ubawurinna/freetype-windows-binar
     mkdir -p /app/export/lib/freetype && \
     cp -r /tmp/freetype-windows-binaries-${FREETYPE_VERSION}/include /app/export/lib/freetype/include && \
     cp -r /tmp/freetype-windows-binaries-${FREETYPE_VERSION}/release\ static/vs2015-2022 /app/export/lib/freetype/lib-vs2015-2022
+
+#Download and extract RapidXML
+RUN wget -O rapidxml.zip -L https://sourceforge.net/projects/rapidxml/files/rapidxml/rapidxml%20${RAPIDXML_VERSION}/rapidxml-${RAPIDXML_VERSION}.zip/download && \
+    unzip rapidxml.zip -d /tmp && \
+    mkdir -p /app/export/lib/rapidxml && \
+    cp -r /tmp/rapidxml-${RAPIDXML_VERSION}/* /app/export/lib/rapidxml
 
 # Initialize and configure imgui repository
 RUN git init imgui && \
