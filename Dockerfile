@@ -35,7 +35,7 @@ RUN wget -O freetype.zip -L https://github.com/ubawurinna/freetype-windows-binar
     cp -r /tmp/freetype-windows-binaries-${FREETYPE_VERSION}/include /app/export/lib/freetype/include && \
     cp -r /tmp/freetype-windows-binaries-${FREETYPE_VERSION}/release\ static/vs2015-2022 /app/export/lib/freetype/lib-vs2015-2022
 
-#Download and extract RapidXML
+# Download and extract RapidXML
 RUN wget -O rapidxml.zip -L https://sourceforge.net/projects/rapidxml/files/rapidxml/rapidxml%20${RAPIDXML_VERSION}/rapidxml-${RAPIDXML_VERSION}.zip/download && \
     unzip rapidxml.zip -d /tmp && \
     mkdir -p /app/export/lib/rapidxml && \
