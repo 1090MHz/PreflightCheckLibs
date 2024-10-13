@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     unzip \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 # Define versions
@@ -54,9 +55,11 @@ RUN git init imgui && \
     git remote add -f origin https://github.com/ocornut/imgui.git && \
     git config core.sparsecheckout true && \
     echo "examples/libs/emscripten" >> .git/info/sparse-checkout && \
+    echo "misc/fonts/binary_to_compressed_c.cpp" >> .git/info/sparse-checkout && \
     git pull origin tags/v${IMGUI_VERSION} && \
     mkdir -p /app/export/lib/imgui && \
-    cp -r examples/libs/emscripten /app/export/lib/imgui/emscripten
+    cp -r examples/libs/emscripten /app/export/lib/imgui/emscripten && \
+    cp misc/fonts/binary_to_compressed_c.cpp /app/export/lib/imgui/
 
 # Function to download and extract fonts
 RUN mkdir -p /app/export/fonts
@@ -84,6 +87,18 @@ RUN wget -O metropolis.zip -L https://www.1001fonts.com/download/metropolis.zip 
     unzip metropolis.zip -d /tmp/metropolis && \
     mkdir -p /app/export/fonts/metropolis && \
     cp -r /tmp/metropolis/* /app/export/fonts/metropolis
+
+# Download and extract Font Awesome Solid font
+RUN wget -O fa-solid-900.zip -L https://use.fontawesome.com/releases/v5.15.4/fontawesome-free-5.15.4-web.zip && \
+    unzip fa-solid-900.zip -d /tmp/fontawesome && \
+    mkdir -p /app/export/fonts/fontawesome && \
+    cp /tmp/fontawesome/fontawesome-free-5.15.4-web/webfonts/fa-solid-900.ttf /app/export/fonts/fontawesome
+
+# Compile binary_to_compressed_c.cpp
+RUN g++ -o /app/export/lib/imgui/binary_to_compressed_c /app/export/lib/imgui/binary_to_compressed_c.cpp
+
+# Convert the fa-solid-900.ttf to fa-solid-900.inc
+RUN /app/export/lib/imgui/binary_to_compressed_c /app/export/fonts/fontawesome/fa-solid-900.ttf fa-solid-900 > /app/export/fonts/fontawesome/fa-solid-900.inc
 
 # Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
