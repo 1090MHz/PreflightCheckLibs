@@ -2,6 +2,35 @@
 
 This repository is intended to be used as a submodule to provide libraries and fonts for your project.
 
+## 0. Included Libraries and Fonts
+
+The Dockerfile in this repository is configured to download and extract the following libraries and fonts:
+
+### Libraries
+- **GLFW**: Version 3.4
+- **GLEW**: Version 2.2.0
+- **FreeType**: Version 2.13.2
+- **RapidXML**: Version 1.13
+- **libcurl**: Version 8.10.1_3
+
+### Fonts
+- **Open Sans**
+- **Droid Sans**
+- **Droid Sans Mono**
+- **Metropolis**
+- **Font Awesome Solid**
+
+These libraries and fonts will be downloaded and extracted into the following directories by default:
+- **Libraries**: `./PreflightCheckLibs/third_party/libs`
+- **Fonts**: `./PreflightCheckLibs/third_party/fonts`
+
+You can customize these directories using the environment variables as described in the [Customizing Directories](#5-customizing-directories) section.
+
+### Note
+Additionally, selected items from **ImGui** (Version 1.91.0) are included:
+- `examples/libs/emscripten`
+- `misc/fonts/binary_to_compressed_c.cpp`
+
 ## 1. Add PreflightCheckLibs to Your Project
 Add the submodule:
 ```bash
