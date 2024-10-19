@@ -18,6 +18,7 @@ ENV FREETYPE_VERSION=2.13.2
 ENV RAPIDXML_VERSION=1.13
 ENV CURL_VERSION=8.10.1_3
 ENV XPLANE_SDK_VERSION=410
+ENV CAIRO_VERSION=1.18.2
 
 # Download and extract GLFW
 RUN wget -O glfw.zip -L https://github.com/glfw/glfw/releases/download/${GLFW_VERSION}/glfw-${GLFW_VERSION}.bin.WIN64.zip && \
@@ -56,6 +57,11 @@ RUN wget -O xplane_sdk.zip -L https://developer.x-plane.com/wp-content/plugins/c
     mkdir -p /app/export/lib/XPSDK${XPLANE_SDK_VERSION} && \
     cp -r /tmp/SDK/* /app/export/lib/XPSDK${XPLANE_SDK_VERSION}
 
+# Download and extract Cairo
+RUN wget -O cairo.tar.xz -L https://cairographics.org/releases/cairo-${CAIRO_VERSION}.tar.xz && \
+    tar -xf cairo.tar.xz -C /tmp && \
+    mkdir -p /app/export/lib/cairo && \
+    cp -r /tmp/cairo-${CAIRO_VERSION}/* /app/export/lib/cairo
 
 # Initialize and configure imgui repository
 RUN git init imgui && \
