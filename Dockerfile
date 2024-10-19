@@ -17,6 +17,7 @@ ENV GLEW_VERSION=2.2.0
 ENV FREETYPE_VERSION=2.13.2
 ENV RAPIDXML_VERSION=1.13
 ENV CURL_VERSION=8.10.1_3
+ENV XPLANE_SDK_VERSION=4.1.0
 
 # Download and extract GLFW
 RUN wget -O glfw.zip -L https://github.com/glfw/glfw/releases/download/${GLFW_VERSION}/glfw-${GLFW_VERSION}.bin.WIN64.zip && \
@@ -48,6 +49,13 @@ RUN wget -O curl.zip -L https://curl.se/windows/dl-${CURL_VERSION}/curl-${CURL_V
     unzip curl.zip -d /tmp && \
     mkdir -p /app/export/lib/curl && \
     cp -r /tmp/curl-${CURL_VERSION}-win64-mingw/* /app/export/lib/curl
+
+# Download and extract X-Plane SDK
+RUN wget -O xplane_sdk.zip -L https://developer.x-plane.com/wp-content/plugins/code-sample-generation/sdk_zip_files/XPSDK${XPLANE_SDK_VERSION}.zip && \
+    unzip xplane_sdk.zip -d /tmp && \
+    mkdir -p /app/export/lib/xplane_sdk && \
+    cp -r /tmp/XPSDK${XPLANE_SDK_VERSION}/* /app/export/lib/xplane_sdk
+
 
 # Initialize and configure imgui repository
 RUN git init imgui && \
