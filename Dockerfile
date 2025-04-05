@@ -40,8 +40,10 @@ RUN wget -O freetype.zip -L https://github.com/ubawurinna/freetype-windows-binar
 # Download and extract RapidXML
 RUN wget -O rapidxml.zip -L https://sourceforge.net/projects/rapidxml/files/rapidxml/rapidxml%20${RAPIDXML_VERSION}/rapidxml-${RAPIDXML_VERSION}.zip/download && \
     unzip rapidxml.zip -d /tmp && \
-    mkdir -p /app/export/lib/rapidxml && \
-    cp -r /tmp/rapidxml-${RAPIDXML_VERSION}/* /app/export/lib/rapidxml
+    mkdir -p /app/export/lib/rapidxml/include/rapidxml && \
+    cp /tmp/rapidxml-${RAPIDXML_VERSION}/license.txt /app/export/lib/rapidxml/license.txt && \
+    cp /tmp/rapidxml-${RAPIDXML_VERSION}/manual.html /app/export/lib/rapidxml/manual.html && \
+    cp /tmp/rapidxml-${RAPIDXML_VERSION}/*.hpp /app/export/lib/rapidxml/include/rapidxml/ && \
 
 # Download and extract libcurl
 RUN wget -O curl.zip -L https://curl.se/windows/dl-${CURL_VERSION}/curl-${CURL_VERSION}-win64-mingw.zip && \
