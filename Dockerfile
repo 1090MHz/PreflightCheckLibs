@@ -44,7 +44,7 @@ RUN wget -O rapidxml.zip -L https://sourceforge.net/projects/rapidxml/files/rapi
     mkdir -p /app/export/lib/rapidxml/include/rapidxml && \
     cp /tmp/rapidxml-${RAPIDXML_VERSION}/license.txt /app/export/lib/rapidxml/license.txt && \
     cp /tmp/rapidxml-${RAPIDXML_VERSION}/manual.html /app/export/lib/rapidxml/manual.html && \
-    cp /tmp/rapidxml-${RAPIDXML_VERSION}/*.hpp /app/export/lib/rapidxml/include/rapidxml/ && \
+    cp /tmp/rapidxml-${RAPIDXML_VERSION}/*.hpp /app/export/lib/rapidxml/include/rapidxml/
 
 # Download and extract libcurl
 RUN wget -O curl.zip -L https://curl.se/windows/dl-${CURL_VERSION}/curl-${CURL_VERSION}-win64-mingw.zip && \
