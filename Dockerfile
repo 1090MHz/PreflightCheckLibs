@@ -108,7 +108,7 @@ RUN wget -O fa-solid-900.zip -L https://use.fontawesome.com/releases/v5.15.4/fon
 RUN g++ -o /app/export/lib/imgui/binary_to_compressed_c /app/export/lib/imgui/binary_to_compressed_c.cpp
 
 # Convert the fa-solid-900.ttf to fa-solid-900.inc
-RUN /app/export/lib/imgui/binary_to_compressed_c /app/export/fonts/fontawesome/fa-solid-900.ttf fa-solid-900 > /app/export/fonts/fontawesome/fa-solid-900.inc
+RUN /app/export/lib/imgui/binary_to_compressed_c /app/export/fonts/fontawesome/fa-solid-900.ttf fa_solid_900 > /app/export/fonts/fontawesome/fa-solid-900.inc
 
 # Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
