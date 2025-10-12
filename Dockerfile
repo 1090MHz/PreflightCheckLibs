@@ -54,10 +54,9 @@ RUN wget -O curl.zip -L https://curl.se/windows/dl-${CURL_VERSION}/curl-${CURL_V
     cp -r /tmp/curl-${CURL_VERSION}-win64-mingw/* /app/export/lib/curl
 
 # Download nlohmann/json (header-only library)
-RUN mkdir -p /app/export/lib/nlohmann && \
+RUN mkdir -p /app/export/lib/nlohmann/include/nlohmann && \
     wget -O /tmp/json.hpp -L https://github.com/nlohmann/json/releases/download/v${NLOHMANN_JSON_VERSION}/json.hpp && \
-    mkdir -p /app/export/lib/nlohmann && \
-    cp /tmp/json.hpp /app/export/lib/nlohmann/json.hpp
+    cp /tmp/json.hpp /app/export/lib/nlohmann/include/nlohmann/json.hpp
 
 # Download and extract X-Plane SDK
 RUN wget -O xplane_sdk.zip -L https://developer.x-plane.com/wp-content/plugins/code-sample-generation/sdk_zip_files/XPSDK${XPLANE_SDK_VERSION}.zip && \
