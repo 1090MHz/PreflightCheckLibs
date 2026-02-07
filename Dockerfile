@@ -17,6 +17,7 @@ ENV GLEW_VERSION=2.2.0
 ENV FREETYPE_VERSION=2.13.2
 ENV RAPIDXML_VERSION=1.13
 ENV CURL_VERSION=8.10.1_3
+ENV LIBSODIUM_VERSION=1.0.20
 ENV XPLANE_SDK_VERSION=410
 ENV NLOHMANN_JSON_VERSION=3.12.0
 
@@ -52,6 +53,12 @@ RUN wget -O curl.zip -L https://curl.se/windows/dl-${CURL_VERSION}/curl-${CURL_V
     unzip curl.zip -d /tmp && \
     mkdir -p /app/export/lib/curl && \
     cp -r /tmp/curl-${CURL_VERSION}-win64-mingw/* /app/export/lib/curl
+
+# Download and extract libsodium
+RUN wget -O libsodium.zip -L https://github.com/jedisct1/libsodium/releases/download/${LIBSODIUM_VERSION}-RELEASE/libsodium-${LIBSODIUM_VERSION}-msvc.zip && \
+    unzip libsodium.zip -d /tmp && \
+    mkdir -p /app/export/lib/libsodium && \
+    cp -r /tmp/libsodium/* /app/export/lib/libsodium
 
 # Download nlohmann/json (header-only library)
 RUN mkdir -p /app/export/lib/nlohmann/include/nlohmann && \
