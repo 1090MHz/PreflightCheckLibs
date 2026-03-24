@@ -13,7 +13,7 @@ cp -rf /app/export/lib/rapidxml/ /mnt/export/libs
 cp -r /app/export/lib/curl/ /mnt/export/libs
 cp -r /app/export/lib/libsodium/ /mnt/export/libs
 cp -r /app/export/lib/nlohmann/ /mnt/export/libs
-cp -r /app/export/lib/XPSDK410/ /mnt/export/libs
+cp -r /app/export/lib/XPSDK420/ /mnt/export/libs
 
 # Copy fonts to the export directory
 cp -r /app/export/fonts /mnt/export
