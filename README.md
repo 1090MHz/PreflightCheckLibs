@@ -12,7 +12,8 @@ The Dockerfile in this repository is configured to download and extract the foll
 - **FreeType**: Version 2.13.2
 - **RapidXML**: Version 1.13
 - **libcurl**: Version 8.10.1_3
-- **Libsodium**: Verion 1.0.20
+- **Libsodium**: Version 1.0.20
+- **X-Plane SDK**: Version 4.2.0
 
 ### Fonts
 - **Open Sans**
