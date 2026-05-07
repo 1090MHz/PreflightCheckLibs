@@ -29,7 +29,7 @@ These libraries and fonts will be downloaded and extracted into the following di
 You can customize these directories using the environment variables as described in the [Customizing Directories](#5-customizing-directories) section.
 
 ### Note
-Additionally, selected items from **ImGui** (Version 1.91.0) are included:
+Additionally, selected items from **ImGui** (Version 1.92.7) are included:
 - `examples/libs/emscripten`
 - `misc/fonts/binary_to_compressed_c.cpp`
 
