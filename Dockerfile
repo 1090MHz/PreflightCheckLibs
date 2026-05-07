@@ -16,7 +16,8 @@ ENV GLFW_VERSION=3.4
 ENV GLEW_VERSION=2.2.0
 ENV FREETYPE_VERSION=2.13.2
 ENV RAPIDXML_VERSION=1.13
-ENV CURL_VERSION=8.10.1_3
+ENV CURL_VERSION=8.20.0
+ENV CURL_BUILD=2
 ENV LIBSODIUM_VERSION=1.0.20
 ENV XPLANE_SDK_VERSION=430
 ENV NLOHMANN_JSON_VERSION=3.12.0
@@ -49,10 +50,10 @@ RUN wget -O rapidxml.zip -L https://sourceforge.net/projects/rapidxml/files/rapi
     cp /tmp/rapidxml-${RAPIDXML_VERSION}/*.hpp /app/export/lib/rapidxml/include/rapidxml/
 
 # Download and extract libcurl
-RUN wget -O curl.zip -L https://curl.se/windows/dl-${CURL_VERSION}/curl-${CURL_VERSION}-win64-mingw.zip && \
+RUN wget -O curl.zip -L https://curl.se/windows/dl-${CURL_VERSION}_${CURL_BUILD}/curl-${CURL_VERSION}_${CURL_BUILD}-win64-mingw.zip && \
     unzip curl.zip -d /tmp && \
     mkdir -p /app/export/lib/curl && \
-    cp -r /tmp/curl-${CURL_VERSION}-win64-mingw/* /app/export/lib/curl
+    cp -r /tmp/curl-${CURL_VERSION}_${CURL_BUILD}-win64-mingw/* /app/export/lib/curl
 
 # Download and extract libsodium
 RUN wget -O libsodium.zip -L https://github.com/jedisct1/libsodium/releases/download/${LIBSODIUM_VERSION}-RELEASE/libsodium-${LIBSODIUM_VERSION}-msvc.zip && \
