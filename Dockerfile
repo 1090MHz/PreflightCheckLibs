@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Define versions
-ENV IMGUI_VERSION=1.91.0
+ENV IMGUI_VERSION=1.92.7
 ENV GLFW_VERSION=3.4
 ENV GLEW_VERSION=2.2.0
 ENV FREETYPE_VERSION=2.13.2
