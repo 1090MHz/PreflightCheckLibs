@@ -13,3 +13,4 @@ CMakeUserPresets.json
 
 libs/*
 third_party/*
+.vscode/settings.json

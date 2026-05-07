@@ -17,7 +17,9 @@ ENV GLEW_VERSION=2.2.0
 ENV FREETYPE_VERSION=2.13.2
 ENV RAPIDXML_VERSION=1.13
 ENV CURL_VERSION=8.10.1_3
-ENV XPLANE_SDK_VERSION=410
+ENV LIBSODIUM_VERSION=1.0.20
+ENV XPLANE_SDK_VERSION=430
+ENV NLOHMANN_JSON_VERSION=3.12.0
 ENV CAIRO_VERSION=1.18.2
 
 # Download and extract GLFW
@@ -42,14 +44,27 @@ RUN wget -O freetype.zip -L https://github.com/ubawurinna/freetype-windows-binar
 # Download and extract RapidXML
 RUN wget -O rapidxml.zip -L https://sourceforge.net/projects/rapidxml/files/rapidxml/rapidxml%20${RAPIDXML_VERSION}/rapidxml-${RAPIDXML_VERSION}.zip/download && \
     unzip rapidxml.zip -d /tmp && \
-    mkdir -p /app/export/lib/rapidxml && \
-    cp -r /tmp/rapidxml-${RAPIDXML_VERSION}/* /app/export/lib/rapidxml
+    mkdir -p /app/export/lib/rapidxml/include/rapidxml && \
+    cp /tmp/rapidxml-${RAPIDXML_VERSION}/license.txt /app/export/lib/rapidxml/license.txt && \
+    cp /tmp/rapidxml-${RAPIDXML_VERSION}/manual.html /app/export/lib/rapidxml/manual.html && \
+    cp /tmp/rapidxml-${RAPIDXML_VERSION}/*.hpp /app/export/lib/rapidxml/include/rapidxml/
 
 # Download and extract libcurl
 RUN wget -O curl.zip -L https://curl.se/windows/dl-${CURL_VERSION}/curl-${CURL_VERSION}-win64-mingw.zip && \
     unzip curl.zip -d /tmp && \
     mkdir -p /app/export/lib/curl && \
     cp -r /tmp/curl-${CURL_VERSION}-win64-mingw/* /app/export/lib/curl
+
+# Download and extract libsodium
+RUN wget -O libsodium.zip -L https://github.com/jedisct1/libsodium/releases/download/${LIBSODIUM_VERSION}-RELEASE/libsodium-${LIBSODIUM_VERSION}-msvc.zip && \
+    unzip libsodium.zip -d /tmp && \
+    mkdir -p /app/export/lib/libsodium && \
+    cp -r /tmp/libsodium/* /app/export/lib/libsodium
+
+# Download nlohmann/json (header-only library)
+RUN mkdir -p /app/export/lib/nlohmann/include/nlohmann && \
+    wget -O /tmp/json.hpp -L https://github.com/nlohmann/json/releases/download/v${NLOHMANN_JSON_VERSION}/json.hpp && \
+    cp /tmp/json.hpp /app/export/lib/nlohmann/include/nlohmann/json.hpp
 
 # Download and extract X-Plane SDK
 RUN wget -O xplane_sdk.zip -L https://developer.x-plane.com/wp-content/plugins/code-sample-generation/sdk_zip_files/XPSDK${XPLANE_SDK_VERSION}.zip && \
@@ -112,7 +127,7 @@ RUN wget -O fa-solid-900.zip -L https://use.fontawesome.com/releases/v5.15.4/fon
 RUN g++ -o /app/export/lib/imgui/binary_to_compressed_c /app/export/lib/imgui/binary_to_compressed_c.cpp
 
 # Convert the fa-solid-900.ttf to fa-solid-900.inc
-RUN /app/export/lib/imgui/binary_to_compressed_c /app/export/fonts/fontawesome/fa-solid-900.ttf fa-solid-900 > /app/export/fonts/fontawesome/fa-solid-900.inc
+RUN /app/export/lib/imgui/binary_to_compressed_c /app/export/fonts/fontawesome/fa-solid-900.ttf fa_solid_900 > /app/export/fonts/fontawesome/fa-solid-900.inc
 
 # Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
