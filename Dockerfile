@@ -21,6 +21,7 @@ ENV CURL_BUILD=2
 ENV LIBSODIUM_VERSION=1.0.20
 ENV XPLANE_SDK_VERSION=430
 ENV NLOHMANN_JSON_VERSION=3.12.0
+ENV OPENFLIGHTS_REF=master
 
 # Download and extract GLFW
 RUN wget -O glfw.zip -L https://github.com/glfw/glfw/releases/download/${GLFW_VERSION}/glfw-${GLFW_VERSION}.bin.WIN64.zip && \
@@ -65,6 +66,25 @@ RUN wget -O libsodium.zip -L https://github.com/jedisct1/libsodium/releases/down
 RUN mkdir -p /app/export/lib/nlohmann/include/nlohmann && \
     wget -O /tmp/json.hpp -L https://github.com/nlohmann/json/releases/download/v${NLOHMANN_JSON_VERSION}/json.hpp && \
     cp /tmp/json.hpp /app/export/lib/nlohmann/include/nlohmann/json.hpp
+
+# Download the OpenFlights airline database snapshot (data only, not AGPL application code)
+RUN mkdir -p /app/export/lib/openflights && \
+    wget -O /app/export/lib/openflights/airlines.dat -L \
+        https://raw.githubusercontent.com/jpatokal/openflights/${OPENFLIGHTS_REF}/data/airlines.dat && \
+    printf '%s\n' \
+        'OpenFlights Airline Database' \
+        'Source: https://openflights.org/data.php' \
+        "Revision: ${OPENFLIGHTS_COMMIT}" \
+        '' \
+        'Database license: Open Database License (ODbL) 1.0' \
+        'https://opendatacommons.org/licenses/odbl/1-0/' \
+        '' \
+        'Individual database contents: Database Contents License (DbCL) 1.0' \
+        'https://opendatacommons.org/licenses/dbcl/1-0/' \
+        '' \
+        'The database is UTF-8 CSV without a header row. Fields are:' \
+        'Airline ID, Name, Alias, IATA, ICAO, Callsign, Country, Active.' \
+        > /app/export/lib/openflights/NOTICE.txt
 
 # Download and extract X-Plane SDK
 RUN wget -O xplane_sdk.zip -L https://developer.x-plane.com/wp-content/plugins/code-sample-generation/sdk_zip_files/XPSDK${XPLANE_SDK_VERSION}.zip && \
