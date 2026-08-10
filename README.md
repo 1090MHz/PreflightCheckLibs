@@ -75,12 +75,12 @@ You can override the base directory for both libraries and fonts using the `EXPO
 
 **For Command Prompt:**
 ```bash
-set EXPORT_BASE_DIR=../third_party && docker-compose -f ./PreflightCheckLibs/docker-compose.yml up
+set EXPORT_BASE_DIR=../third_party && docker-compose -f ./PreflightCheckLibs/docker-compose.yml up --build
 ```
 
 **For PowerShell:**
 ```powershell
-$env:EXPORT_BASE_DIR="../third_party"; docker-compose -f ./PreflightCheckLibs/docker-compose.yml up
+$env:EXPORT_BASE_DIR="../third_party"; docker-compose -f ./PreflightCheckLibs/docker-compose.yml up --build
 ```
 
 ### Override Libraries Directory
@@ -88,12 +88,12 @@ To customize the directory for libraries, use the `EXPORT_LIBS_DIR` environment 
 
 **For Command Prompt:**
 ```bash
-set EXPORT_LIBS_DIR=../third_party/libs && docker-compose -f ./PreflightCheckLibs/docker-compose.yml up
+set EXPORT_LIBS_DIR=../third_party/libs && docker-compose -f ./PreflightCheckLibs/docker-compose.yml up --build
 ```
 
 **For PowerShell:**
 ```powershell
-$env:EXPORT_LIBS_DIR="../third_party/libs"; docker-compose -f ./PreflightCheckLibs/docker-compose.yml up
+$env:EXPORT_LIBS_DIR="../third_party/libs"; docker-compose -f ./PreflightCheckLibs/docker-compose.yml up --build
 ```
 
 ### Override Fonts Directory
@@ -101,12 +101,12 @@ To customize the directory for fonts, use the `EXPORT_FONTS_DIR` environment var
 
 **For Command Prompt:**
 ```bash
-set EXPORT_FONTS_DIR=../third_party/fonts && docker-compose -f ./PreflightCheckLibs/docker-compose.yml up
+set EXPORT_FONTS_DIR=../third_party/fonts && docker-compose -f ./PreflightCheckLibs/docker-compose.yml up --build
 ```
 
 **For PowerShell:**
 ```powershell
-$env:EXPORT_FONTS_DIR="../third_party/fonts"; docker-compose -f ./PreflightCheckLibs/docker-compose.yml up
+$env:EXPORT_FONTS_DIR="../third_party/fonts"; docker-compose -f ./PreflightCheckLibs/docker-compose.yml up --build
 ```
 
 ### Override Both Libraries and Fonts Directories
@@ -114,12 +114,12 @@ You can also override both directories simultaneously:
 
 **For Command Prompt:**
 ```bash
-set EXPORT_LIBS_DIR=../third_party/libs && set EXPORT_FONTS_DIR=../third_party/fonts && docker-compose -f ./PreflightCheckLibs/docker-compose.yml up
+set EXPORT_LIBS_DIR=../third_party/libs && set EXPORT_FONTS_DIR=../third_party/fonts && docker-compose -f ./PreflightCheckLibs/docker-compose.yml up --build
 ```
 
 **For PowerShell:**
 ```powershell
-$env:EXPORT_LIBS_DIR="../third_party/libs"; $env:EXPORT_FONTS_DIR="../third_party/fonts"; docker-compose -f ./PreflightCheckLibs/docker-compose.yml up
+$env:EXPORT_LIBS_DIR="../third_party/libs"; $env:EXPORT_FONTS_DIR="../third_party/fonts"; docker-compose -f ./PreflightCheckLibs/docker-compose.yml up --build
 ```
 
 ## 6. Custom Configuration
