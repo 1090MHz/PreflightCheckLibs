@@ -15,6 +15,11 @@ The Dockerfile in this repository is configured to download and extract the foll
 - **Libsodium**: Version 1.0.20
 - **X-Plane SDK**: Version 4.3.0
 
+### Data
+- **OpenFlights Airline Database**: Pinned UTF-8 CSV snapshot with airline names, IATA/ICAO codes, callsigns, countries, and active status
+	- Exported to `libs/openflights/airlines.dat`
+	- Licensed under ODbL 1.0 and DbCL 1.0; attribution and license links are included in `libs/openflights/NOTICE.txt`
+
 ### Fonts
 - **Open Sans**
 - **Droid Sans**
