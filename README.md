@@ -25,6 +25,7 @@ The Dockerfile in this repository is configured to download and extract the foll
 - **Droid Sans**
 - **Droid Sans Mono**
 - **Atkinson Hyperlegible Mono** (static Regular and Bold; SIL Open Font License 1.1, `OFL.txt` included)
+- **Source Code Pro**: Version 2.042 (Regular and Bold; SIL Open Font License 1.1, `LICENSE.md` included)
 - **Metropolis**
 - **Font Awesome Solid**
 

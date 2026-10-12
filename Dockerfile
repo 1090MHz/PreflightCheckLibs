@@ -23,6 +23,7 @@ ENV XPLANE_SDK_VERSION=430
 ENV NLOHMANN_JSON_VERSION=3.12.0
 ENV OPENFLIGHTS_REF=master
 ENV ATKINSON_MONO_COMMIT=154d50362016cc3e873eb21d242cd0772384c8f9
+ENV SOURCE_CODE_PRO_TAG=2.042R-u/1.062R-i/1.026R-vf
 
 # Download and extract GLFW
 RUN wget -O glfw.zip -L https://github.com/glfw/glfw/releases/download/${GLFW_VERSION}/glfw-${GLFW_VERSION}.bin.WIN64.zip && \
@@ -133,6 +134,13 @@ RUN mkdir -p /app/export/fonts/atkinson-hyperlegible-mono && \
     wget -L https://raw.githubusercontent.com/googlefonts/atkinson-hyperlegible-next-mono/${ATKINSON_MONO_COMMIT}/fonts/ttf/AtkinsonHyperlegibleMono-Regular.ttf && \
     wget -L https://raw.githubusercontent.com/googlefonts/atkinson-hyperlegible-next-mono/${ATKINSON_MONO_COMMIT}/fonts/ttf/AtkinsonHyperlegibleMono-Bold.ttf && \
     wget -L https://raw.githubusercontent.com/googlefonts/atkinson-hyperlegible-next-mono/${ATKINSON_MONO_COMMIT}/OFL.txt
+
+# Download Source Code Pro 2.042 (static Regular and Bold TTFs plus the OFL licence) from Adobe's repository
+RUN mkdir -p /app/export/fonts/source-code-pro && \
+    cd /app/export/fonts/source-code-pro && \
+    wget -L https://raw.githubusercontent.com/adobe-fonts/source-code-pro/${SOURCE_CODE_PRO_TAG}/TTF/SourceCodePro-Regular.ttf && \
+    wget -L https://raw.githubusercontent.com/adobe-fonts/source-code-pro/${SOURCE_CODE_PRO_TAG}/TTF/SourceCodePro-Bold.ttf && \
+    wget -L https://raw.githubusercontent.com/adobe-fonts/source-code-pro/${SOURCE_CODE_PRO_TAG}/LICENSE.md
 
 # Download and extract Metropolis font
 RUN wget -O metropolis.zip -L https://www.1001fonts.com/download/metropolis.zip && \
