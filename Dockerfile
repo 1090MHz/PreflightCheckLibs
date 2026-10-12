@@ -22,6 +22,7 @@ ENV LIBSODIUM_VERSION=1.0.20
 ENV XPLANE_SDK_VERSION=430
 ENV NLOHMANN_JSON_VERSION=3.12.0
 ENV OPENFLIGHTS_REF=master
+ENV ATKINSON_MONO_COMMIT=154d50362016cc3e873eb21d242cd0772384c8f9
 
 # Download and extract GLFW
 RUN wget -O glfw.zip -L https://github.com/glfw/glfw/releases/download/${GLFW_VERSION}/glfw-${GLFW_VERSION}.bin.WIN64.zip && \
@@ -125,6 +126,13 @@ RUN wget -O droid-sans-mono.zip -L https://www.1001fonts.com/download/droid-sans
     unzip droid-sans-mono.zip -d /tmp/droid-sans-mono && \
     mkdir -p /app/export/fonts/droid-sans-mono && \
     cp -r /tmp/droid-sans-mono/* /app/export/fonts/droid-sans-mono
+
+# Download Atkinson Hyperlegible Mono (static Regular and Bold TTFs plus the OFL licence, pinned commit)
+RUN mkdir -p /app/export/fonts/atkinson-hyperlegible-mono && \
+    cd /app/export/fonts/atkinson-hyperlegible-mono && \
+    wget -L https://raw.githubusercontent.com/googlefonts/atkinson-hyperlegible-next-mono/${ATKINSON_MONO_COMMIT}/fonts/ttf/AtkinsonHyperlegibleMono-Regular.ttf && \
+    wget -L https://raw.githubusercontent.com/googlefonts/atkinson-hyperlegible-next-mono/${ATKINSON_MONO_COMMIT}/fonts/ttf/AtkinsonHyperlegibleMono-Bold.ttf && \
+    wget -L https://raw.githubusercontent.com/googlefonts/atkinson-hyperlegible-next-mono/${ATKINSON_MONO_COMMIT}/OFL.txt
 
 # Download and extract Metropolis font
 RUN wget -O metropolis.zip -L https://www.1001fonts.com/download/metropolis.zip && \
